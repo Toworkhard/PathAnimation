@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.example.administrator.pathanimator.widget.chartView
+            android:id="@+id/chartview"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="25dp"
+            android:layout_centerInParent="true"
+            app:bgcolor="#ffffff"
+            app:interval="50dp"
+            app:isScroll="false"
+            app:linecolor="#5071e4"
+            app:xylinecolor="#e2e2e2"
+            app:xylinewidth="1dp"
+            app:xytextcolor="#aaaaaa"
+            app:xytextsize="10sp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
