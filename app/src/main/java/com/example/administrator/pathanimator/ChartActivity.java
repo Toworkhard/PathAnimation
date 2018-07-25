@@ -29,7 +29,7 @@ public class ChartActivity extends AppCompatActivity {
         for (int i = 0; i < 12; i++) {
             xValue.add((i + 1) + "月");
             yearvalue.add("2018年");
-            value.put((i + 1) + "月",  (Math.random() * 181 + 60)+"");//60--240
+            value.put((i + 1) + "月",  i * 5 + 60+"");//60--240
         }
 
         for (int i = 0; i < 6; i++) {

@@ -20,6 +20,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
+
 import com.example.administrator.pathanimator.R;
 
 import java.util.ArrayList;
@@ -93,6 +94,7 @@ public class chartView extends View {
     private float[] coords;
     private Path mPathCircle;
     private Path mPathCircleDst;
+    private boolean isRepaint = false;
 
     public chartView(Context context) {
         this(context, null);
@@ -343,6 +345,12 @@ public class chartView extends View {
      * @param canvas
      */
     private void drawBrokenLine(Canvas canvas) {
+//        Paint mPaint = new Paint();
+//        mPaint.setAntiAlias(true);
+//        mPaint.setStrokeWidth(3);
+//        mPaint.setStyle(Paint.Style.STROKE);
+//        mPaint.setColor(linecolor);
+
         linePaint.setStyle(Paint.Style.STROKE);
         linePaint.setColor(linecolor);
 //        //绘制折线
@@ -355,10 +363,14 @@ public class chartView extends View {
             y = yOri - yOri * (1 - 0.15f) * (Float.parseFloat(value.get(xValue.get(i)))*100) / yValue.get(yValue.size() - 1);
             path.lineTo(x, y);
         }
-        mPathCircle.addPath(path);
-        mPathMeasure.setPath(mPathCircle, false);
-        mPathMeasure.getSegment(0, mCirclePercent * mPathMeasure.getLength(), mPathCircleDst, true);
-        canvas.drawPath(mPathCircleDst, linePaint);
+        if(!isRepaint) {
+            mPathCircle.addPath(path);
+            mPathMeasure.setPath(mPathCircle, false);
+            mPathMeasure.getSegment(0, mCirclePercent * mPathMeasure.getLength(), mPathCircleDst, true);
+            canvas.drawPath(mPathCircleDst, linePaint);
+        }else {
+            canvas.drawPath(path, linePaint);
+        }
     }
     /**
      * 绘制XY坐标
@@ -456,6 +468,7 @@ public class chartView extends View {
                     } else {
                         xInit = xInit + dis;
                     }
+                    isRepaint = true;
                     invalidate();
                 }
                 break;
